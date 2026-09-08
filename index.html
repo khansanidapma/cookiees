@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A sweet little cookie shop — baked with love." />
+  <title>Crumb & Co. — Cookies Are Made With Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav wrap">
+    <a class="brand" href="#home"><span class="brand-dot">✦</span> crumb & co.</a>
+    <nav><a href="#story">Our Story</a><a href="#menu">Cookies</a><a href="#love">Made With Love</a></nav>
+    <button class="cart" onclick="showToast('Your cookie box is still dreaming of you ♡')">♡ <span>Sweet Box</span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">BAKED FRESH · LITTLE MOMENTS</p>
+        <h1>Small bites,<br><em>big comfort.</em></h1>
+        <p class="lead">Buttery, golden cookies made for slow afternoons, warm conversations, and that one extra bite.</p>
+        <div class="actions"><a class="btn primary" href="#menu">Explore the cookies →</a><a class="text-link" href="#story">Our little story</a></div>
+        <div class="mini-note"><span>✿</span><strong>fresh from the oven</strong><span>every little batch</span></div>
+      </div>
+      <div class="hero-art">
+        <div class="blob"></div>
+        <img src="assets/cookies.jpg" alt="Freshly baked golden chocolate chip cookies on a plate" />
+        <div class="sticker">baked<br>with ♡</div>
+      </div>
+    </section>
+
+    <section id="story" class="story wrap">
+      <div><p class="eyebrow">A LITTLE BIT OF US</p><h2>Made for the<br><em>soft moments.</em></h2></div>
+      <p>Crumb & Co. started with a simple idea: make cookies that feel like a tiny hug. We keep our recipes cozy, our batches small, and our kitchen full of good music.</p>
+    </section>
+
+    <section id="menu" class="menu wrap">
+      <div class="section-head"><div><p class="eyebrow">THE COOKIE JAR</p><h2>Pick your happy.</h2></div><span class="count">04 little favorites</span></div>
+      <div class="cards">
+        <article class="card"><div class="cookie-icon">🍪</div><span>01</span><h3>Classic Choco</h3><p>Buttery dough + pools of chocolate.</p></article>
+        <article class="card featured"><div class="cookie-icon">🍪</div><span>02 · favorite</span><h3>Caramel Cloud</h3><p>Soft caramel center with a golden edge.</p></article>
+        <article class="card"><div class="cookie-icon">🍪</div><span>03</span><h3>Hazelnut Hug</h3><p>Toasty hazelnuts and silky chocolate.</p></article>
+        <article class="card"><div class="cookie-icon">🍪</div><span>04</span><h3>Berry Crumble</h3><p>Sweet berry bits with a buttery crumble.</p></article>
+      </div>
+    </section>
+
+    <section id="love" class="love wrap">
+      <div class="love-card"><span class="tiny">✦ FROM OUR OVEN, WITH LOVE ✦</span><h2>cookies are<br><em>made with love</em></h2><p>and a little butter, a little sugar, and lots of tiny happy thoughts.</p><button onclick="showToast('Sending you a warm cookie-shaped hug ♡')">send some love ♡</button></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap"><span>crumb & co. © 2026</span><span>butter yellow · nebula · seashell · old copper</span><span>made softly, baked warmly.</span></footer>
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
