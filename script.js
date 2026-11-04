@@ -3,73 +3,97 @@ const products = [
   {
     id: 1,
     name: "Classic Choco",
-    desc: "Buttery dough + pools of chocolate yang meleleh di mulut.",
+    desc: "Adonan buttery + cokelat leleh di mulut.",
     longDesc: "Cookies klasik dengan adonan buttery yang lembut dan potongan cokelat premium. Sempurna untuk segala suasana.",
     price: 18000,
+    discount: 0,
     emoji: "🍪",
+    image: "assets/cookies/classic.jpg",
+    category: "klasik",
     featured: false
   },
   {
     id: 2,
     name: "Caramel Cloud",
-    desc: "Soft caramel center dengan golden edge yang renyah.",
+    desc: "Pusat caramel lembut dengan tepi golden renyah.",
     longDesc: "Favorit pelanggan! Pusat caramel yang lembut dikelilingi tepi golden yang renyah. Rasanya seperti pelukan hangat.",
     price: 22000,
+    discount: 10,
     emoji: "🍪",
+    image: "assets/cookies/caramel.jpg",
+    category: "manis",
     featured: true
   },
   {
     id: 3,
     name: "Hazelnut Hug",
-    desc: "Toasty hazelnuts dan silky chocolate yang nikmat.",
+    desc: "Hazelnut panggang + cokelat silky yang nikmat.",
     longDesc: "Kombinasi hazelnut panggang yang gurih dengan cokelat silky. Setiap gigitan terasa premium.",
     price: 24000,
+    discount: 0,
     emoji: "🍪",
+    image: "assets/cookies/hazelnut.jpg",
+    category: "kacang",
     featured: false
   },
   {
     id: 4,
     name: "Berry Crumble",
-    desc: "Sweet berry bits dengan buttery crumble yang manis.",
+    desc: "Potongan berry manis dengan crumble buttery.",
     longDesc: "Berry kering yang manis dipadukan dengan crumble buttery. Segar dan nyaman di waktu yang sama.",
     price: 20000,
+    discount: 15,
     emoji: "🍪",
+    image: "assets/cookies/berry.jpg",
+    category: "manis",
     featured: false
   },
   {
     id: 5,
     name: "Matcha Dream",
-    desc: "Matcha lembut dengan white chocolate yang creamy.",
+    desc: "Matcha lembut dengan white chocolate creamy.",
     longDesc: "Matcha Jepang yang earthy dipadukan dengan white chocolate. Rasanya calm tapi addictive.",
     price: 25000,
+    discount: 0,
     emoji: "🍵",
+    image: "assets/cookies/matcha.jpg",
+    category: "premium",
     featured: false
   },
   {
     id: 6,
     name: "Peanut Butter Bliss",
-    desc: "Creamy peanut butter dengan sedikit garam yang pas.",
+    desc: "Peanut butter creamy dengan sedikit garam pas.",
     longDesc: "Peanut butter yang creamy dan sedikit asin. Cocok buat yang suka rasa classic American.",
     price: 21000,
+    discount: 0,
     emoji: "🥜",
+    image: "assets/cookies/peanut.jpg",
+    category: "kacang",
     featured: false
   },
   {
     id: 7,
     name: "Cinnamon Roll",
-    desc: "Aroma cinnamon hangat dengan icing tipis yang manis.",
+    desc: "Aroma cinnamon hangat dengan icing tipis manis.",
     longDesc: "Seperti cinnamon roll tapi dalam bentuk cookies. Wangi cinnamon yang mengundang.",
     price: 19000,
+    discount: 5,
     emoji: "🍂",
+    image: "assets/cookies/cinnamon.jpg",
+    category: "manis",
     featured: false
   },
   {
     id: 8,
     name: "Double Choco",
-    desc: "Cokelat gelap + cokelat susu, double the happiness.",
+    desc: "Cokelat gelap + cokelat susu, double happiness.",
     longDesc: "Untuk pecinta cokelat sejati. Dua jenis cokelat yang meleleh sempurna.",
     price: 23000,
+    discount: 0,
     emoji: "🍫",
+    image: "assets/cookies/double.jpg",
+    category: "klasik",
     featured: true
   },
   {
@@ -78,7 +102,10 @@ const products = [
     desc: "Oatmeal chewy dengan raisin manis yang sehat.",
     longDesc: "Pilihan yang lebih “sehat” tapi tetap enak. Chewy dan penuh tekstur.",
     price: 17000,
+    discount: 0,
     emoji: "🌾",
+    image: "assets/cookies/peanut.jpg",
+    category: "sehat",
     featured: false
   },
   {
@@ -87,7 +114,10 @@ const products = [
     desc: "Caramel manis dengan sentuhan garam laut.",
     longDesc: "Keseimbangan manis-asin yang bikin ketagihan. Salted caramel yang premium.",
     price: 26000,
+    discount: 20,
     emoji: "🧂",
+    image: "assets/cookies/caramel.jpg",
+    category: "premium",
     featured: false
   }
 ];
@@ -122,17 +152,24 @@ function init() {
   }
 }
 
-function renderProducts() {
-  productGrid.innerHTML = products.map(p => `
-    <article class="card ${p.featured ? 'featured' : ''}" data-id="${p.id}">
-      <div class="cookie-icon">${p.emoji}</div>
-      <span>${String(p.id).padStart(2, '0')}${p.featured ? ' · favorite' : ''}</span>
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <div class="price">Rp ${p.price.toLocaleString('id-ID')}</div>
-      <button class="btn primary add-btn" data-add="${p.id}">Tambah ke Keranjang</button>
-    </article>
-  `).join('');
+function renderProducts(filter = 'semua') {
+  const filtered = filter === 'semua' ? products : products.filter(p => p.category === filter);
+  productGrid.innerHTML = filtered.map(p => {
+    const finalPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+    const priceHtml = p.discount 
+      ? `<div class="price"><span class="old-price">Rp ${p.price.toLocaleString('id-ID')}</span> Rp ${finalPrice.toLocaleString('id-ID')} <span class="badge-diskon">-${p.discount}%</span></div>`
+      : `<div class="price">Rp ${p.price.toLocaleString('id-ID')}</div>`;
+    return `
+      <article class="card ${p.featured ? 'featured' : ''}" data-id="${p.id}">
+        <img src="${p.image}" alt="${p.name}" class="cookie-img" />
+        <span>${String(p.id).padStart(2, '0')}${p.featured ? ' · favorit' : ''}</span>
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        ${priceHtml}
+        <button class="btn primary add-btn" data-add="${p.id}">Tambah ke Keranjang</button>
+      </article>
+    `;
+  }).join('');
 }
 
 function updateCartUI() {
@@ -162,7 +199,8 @@ function updateCartUI() {
   
   const total = cart.reduce((sum, item) => {
     const product = products.find(p => p.id === item.id);
-    return sum + (product.price * item.qty);
+    const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+    return sum + (finalPrice * item.qty);
   }, 0);
   cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
   
@@ -193,10 +231,14 @@ function changeQty(id, delta) {
 function openProductModal(id) {
   const p = products.find(prod => prod.id === id);
   if (!p) return;
+  const finalPrice = p.discount ? Math.round(p.price * (1 - p.discount / 100)) : p.price;
+  const priceHtml = p.discount 
+    ? `<div style="color:var(--copper);font-weight:700;font-size:20px;margin-bottom:12px;"><span style="text-decoration:line-through;color:#999;font-size:16px;">Rp ${p.price.toLocaleString('id-ID')}</span> Rp ${finalPrice.toLocaleString('id-ID')} <span class="badge-diskon">-${p.discount}%</span></div>`
+    : `<div style="color:var(--copper);font-weight:700;font-size:20px;margin-bottom:12px;">Rp ${p.price.toLocaleString('id-ID')}</div>`;
   modalBody.innerHTML = `
-    <div style="text-align:center;font-size:60px;margin-bottom:10px;">${p.emoji}</div>
+    <img src="${p.image}" alt="${p.name}" style="width:100%;height:220px;object-fit:cover;border-radius:16px;margin-bottom:12px;" />
     <h2 style="font-family:'Playfair Display',serif;margin:0 0 8px;">${p.name}</h2>
-    <div style="color:var(--copper);font-weight:700;font-size:20px;margin-bottom:12px;">Rp ${p.price.toLocaleString('id-ID')}</div>
+    ${priceHtml}
     <p style="color:var(--muted);line-height:1.6;">${p.longDesc}</p>
     <button class="btn primary full" style="margin-top:20px;" data-add-modal="${p.id}">Tambah ke Keranjang</button>
   `;
@@ -271,7 +313,7 @@ function setupEventListeners() {
       const p = products.find(pr => pr.id === item.id);
       return `${p.name} x${item.qty}`;
     }).join(', ');
-    const total = cart.reduce((sum, item) => sum + products.find(p => p.id === item.id).price * item.qty, 0);
+    const total = cart.reduce((sum, item) => sum + (function(){ const product = products.find(p => p.id === item.id); const finalPrice = product.discount ? Math.round(product.price * (1 - product.discount / 100)) : product.price; return finalPrice * item.qty; })(), 0);
     const msg = `Halo Crumb & Co.! Saya mau pesan:\n${itemsText}\nTotal: Rp ${total.toLocaleString('id-ID')}\nNama: \nAlamat: `;
     window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
   });
@@ -292,6 +334,15 @@ function setupEventListeners() {
     window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
     showToast('Membuka WhatsApp...');
     e.target.reset();
+  });
+
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.dataset.filter);
+    });
   });
 
   // Draggable Follow Us
