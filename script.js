@@ -35,6 +35,60 @@ const products = [
     price: 20000,
     emoji: "🍪",
     featured: false
+  },
+  {
+    id: 5,
+    name: "Matcha Dream",
+    desc: "Matcha lembut dengan white chocolate yang creamy.",
+    longDesc: "Matcha Jepang yang earthy dipadukan dengan white chocolate. Rasanya calm tapi addictive.",
+    price: 25000,
+    emoji: "🍵",
+    featured: false
+  },
+  {
+    id: 6,
+    name: "Peanut Butter Bliss",
+    desc: "Creamy peanut butter dengan sedikit garam yang pas.",
+    longDesc: "Peanut butter yang creamy dan sedikit asin. Cocok buat yang suka rasa classic American.",
+    price: 21000,
+    emoji: "🥜",
+    featured: false
+  },
+  {
+    id: 7,
+    name: "Cinnamon Roll",
+    desc: "Aroma cinnamon hangat dengan icing tipis yang manis.",
+    longDesc: "Seperti cinnamon roll tapi dalam bentuk cookies. Wangi cinnamon yang mengundang.",
+    price: 19000,
+    emoji: "🍂",
+    featured: false
+  },
+  {
+    id: 8,
+    name: "Double Choco",
+    desc: "Cokelat gelap + cokelat susu, double the happiness.",
+    longDesc: "Untuk pecinta cokelat sejati. Dua jenis cokelat yang meleleh sempurna.",
+    price: 23000,
+    emoji: "🍫",
+    featured: true
+  },
+  {
+    id: 9,
+    name: "Oatmeal Raisin",
+    desc: "Oatmeal chewy dengan raisin manis yang sehat.",
+    longDesc: "Pilihan yang lebih “sehat” tapi tetap enak. Chewy dan penuh tekstur.",
+    price: 17000,
+    emoji: "🌾",
+    featured: false
+  },
+  {
+    id: 10,
+    name: "Salted Caramel",
+    desc: "Caramel manis dengan sentuhan garam laut.",
+    longDesc: "Keseimbangan manis-asin yang bikin ketagihan. Salted caramel yang premium.",
+    price: 26000,
+    emoji: "🧂",
+    featured: false
   }
 ];
 
@@ -239,11 +293,49 @@ function setupEventListeners() {
     showToast('Membuka WhatsApp...');
     e.target.reset();
   });
+
+  // Draggable Follow Us
+  makeDraggable(document.getElementById('follow-us'));
 }
 
 function closeCart() {
   cartSidebar.classList.remove('open');
   cartOverlay.classList.remove('show');
+}
+
+// Draggable function
+function makeDraggable(el) {
+  if (!el) return;
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
+
+  el.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('a')) return; // jangan drag kalau klik link
+    isDragging = true;
+    const rect = el.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    el.style.transition = 'none';
+    el.setPointerCapture(e.pointerId);
+  });
+
+  el.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    let x = e.clientX - offsetX;
+    let y = e.clientY - offsetY;
+    // batas layar
+    x = Math.max(10, Math.min(window.innerWidth - el.offsetWidth - 10, x));
+    y = Math.max(10, Math.min(window.innerHeight - el.offsetHeight - 10, y));
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.right = 'auto';
+    el.style.bottom = 'auto';
+  });
+
+  el.addEventListener('pointerup', () => {
+    isDragging = false;
+    el.style.transition = '';
+  });
 }
 
 // Start
