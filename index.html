@@ -1,66 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <link rel="stylesheet" href="https://silverhawk.web.id/lock/lock.css">
-  <link rel="stylesheet" href="https://silverhawk.web.id/lock/lock.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A sweet little cookie shop — baked with love." />
+  <meta name="description" content="Crumb & Co. — Cookies homemade yang hangat, buttery, dan penuh cinta. Pesan sekarang!" />
   <title>Crumb & Co. — Cookies Are Made With Love</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <body data-shlock-mode="ultimate" data-shlock-domain="" data-shlock-brand="cookiees" data-shlock-social="https://www.instagram.com/nnidaa.n">
-  <body data-shlock-mode="ultimate" data-shlock-domain="" data-shlock-brand="cookiees" data-shlock-social="https://www.instagram.com/nnidaa.n">
+  <!-- Welcome Modal -->
+  <div id="welcome-modal" class="welcome-modal">
+    <div class="welcome-content">
+      <div class="welcome-emoji">🍪</div>
+      <h2>Selamat Datang di<br><em>Crumb & Co.!</em></h2>
+      <p>Cookies homemade yang hangat, buttery, dan penuh cinta.<br>Siap bikin harimu lebih manis?</p>
+      <button id="welcome-btn" class="btn primary">Yuk, masuk! ♡</button>
+    </div>
+  </div>
+
   <header class="nav wrap">
     <a class="brand" href="#home"><span class="brand-dot">✦</span> crumb & co.</a>
-    <nav><a href="#story">Our Story</a><a href="#menu">Cookies</a><a href="#love">Made With Love</a></nav>
-    <button class="cart" onclick="showToast('Your cookie box is still dreaming of you ♡')">♡ <span>Sweet Box</span></button>
+    <nav id="main-nav">
+      <a href="#story">Cerita Kami</a>
+      <a href="#menu">Menu Cookies</a>
+      <a href="#testi">Testimoni</a>
+      <a href="#contact">Pesan</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="cart-btn" id="open-cart" aria-label="Buka keranjang">
+        ♡ <span>Keranjang</span> <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">☰</button>
+    </div>
   </header>
 
   <main id="home">
+    <!-- Hero -->
     <section class="hero wrap">
       <div class="hero-copy">
         <p class="eyebrow">BAKED FRESH · LITTLE MOMENTS</p>
         <h1>Small bites,<br><em>big comfort.</em></h1>
-        <p class="lead">Buttery, golden cookies made for slow afternoons, warm conversations, and that one extra bite.</p>
-        <div class="actions"><a class="btn primary" href="#menu">Explore the cookies →</a><a class="text-link" href="#story">Our little story</a></div>
-        <div class="mini-note"><span>✿</span><strong>fresh from the oven</strong><span>every little batch</span></div>
+        <p class="lead">Buttery, golden cookies made for slow afternoons, warm conversations, and that one extra bite. Dibuat dengan penuh cinta di dapur kecil kami.</p>
+        <div class="actions">
+          <a class="btn primary" href="#menu">Lihat Menu Cookies →</a>
+          <a class="text-link" href="#story">Baca cerita kami</a>
+        </div>
+        <div class="mini-note"><span>✿</span><strong>fresh from the oven</strong><span>setiap batch kecil</span></div>
       </div>
       <div class="hero-art">
         <div class="blob"></div>
-        <img src="assets/cookies.jpg" alt="Freshly baked golden chocolate chip cookies on a plate" />
+        <img src="assets/cookies.jpg" alt="Freshly baked golden chocolate chip cookies" />
         <div class="sticker">baked<br>with ♡</div>
       </div>
     </section>
 
+    <!-- Story -->
     <section id="story" class="story wrap">
-      <div><p class="eyebrow">A LITTLE BIT OF US</p><h2>Made for the<br><em>soft moments.</em></h2></div>
-      <p>Crumb & Co. started with a simple idea: make cookies that feel like a tiny hug. We keep our recipes cozy, our batches small, and our kitchen full of good music.</p>
+      <div>
+        <p class="eyebrow">A LITTLE BIT OF US</p>
+        <h2>Made for the<br><em>soft moments.</em></h2>
+      </div>
+      <p>Crumb & Co. dimulai dari ide sederhana: membuat cookies yang terasa seperti pelukan kecil. Kami menjaga resep tetap cozy, batch kecil-kecil, dan dapur penuh musik yang menyenangkan. Setiap cookies dibuat dengan butter, gula, dan banyak happy thoughts.</p>
     </section>
 
+    <!-- Menu -->
     <section id="menu" class="menu wrap">
-      <div class="section-head"><div><p class="eyebrow">THE COOKIE JAR</p><h2>Pick your happy.</h2></div><span class="count">04 little favorites</span></div>
-      <div class="cards">
-        <article class="card"><div class="cookie-icon">🍪</div><span>01</span><h3>Classic Choco</h3><p>Buttery dough + pools of chocolate.</p></article>
-        <article class="card featured"><div class="cookie-icon">🍪</div><span>02 · favorite</span><h3>Caramel Cloud</h3><p>Soft caramel center with a golden edge.</p></article>
-        <article class="card"><div class="cookie-icon">🍪</div><span>03</span><h3>Hazelnut Hug</h3><p>Toasty hazelnuts and silky chocolate.</p></article>
-        <article class="card"><div class="cookie-icon">🍪</div><span>04</span><h3>Berry Crumble</h3><p>Sweet berry bits with a buttery crumble.</p></article>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">THE COOKIE JAR</p>
+          <h2>Pick your happy.</h2>
+        </div>
+        <span class="count">04 little favorites</span>
+      </div>
+      <div class="cards" id="product-grid">
+        <!-- Cards will be rendered by JS for interactivity -->
       </div>
     </section>
 
+    <!-- Testimonials -->
+    <section id="testi" class="testi wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">WHAT PEOPLE SAY</p>
+          <h2>Cerita manis dari pelanggan.</h2>
+        </div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <p>"Cookiesnya soft banget, rasanya beneran seperti buatan rumah. Langganan!"</p>
+          <strong>— Aulia, Jakarta</strong>
+        </div>
+        <div class="testi-card">
+          <p>"Caramel Cloud-nya juara. Packaging-nya juga lucu banget."</p>
+          <strong>— Dimas, Bandung</strong>
+        </div>
+        <div class="testi-card">
+          <p>"Cocok banget buat hadiah. Temenku senang sekali."</p>
+          <strong>— Rara, Surabaya</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Love / CTA -->
     <section id="love" class="love wrap">
-      <div class="love-card"><span class="tiny">✦ FROM OUR OVEN, WITH LOVE ✦</span><h2>cookies are<br><em>made with love</em></h2><p>and a little butter, a little sugar, and lots of tiny happy thoughts.</p><button onclick="showToast('Sending you a warm cookie-shaped hug ♡')">send some love ♡</button></div>
+      <div class="love-card">
+        <span class="tiny">✦ FROM OUR OVEN, WITH LOVE ✦</span>
+        <h2>cookies are<br><em>made with love</em></h2>
+        <p>dan sedikit butter, sedikit gula, plus banyak tiny happy thoughts.</p>
+        <button class="btn primary" onclick="showToast('Mengirim pelukan berbentuk cookies untukmu ♡')">Kirim Love ♡</button>
+      </div>
+    </section>
+
+    <!-- Contact & Order -->
+    <section id="contact" class="contact wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">PESAN SEKARANG</p>
+          <h2>Mau cookies hangat?</h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Hubungi Kami</h3>
+          <p>Pesan via WhatsApp atau DM Instagram. Kami bales cepat!</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/nnidaa.n" target="_blank" rel="noopener" class="social-btn">📸 Instagram @nnidaa.n</a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Crumb%20%26%20Co.%20saya%20mau%20pesan%20cookies" target="_blank" rel="noopener" class="social-btn">💬 WhatsApp</a>
+          </div>
+          <p class="note">*Ganti nomor WhatsApp di kode dengan nomormu sendiri.</p>
+        </div>
+        <form id="order-form" class="order-form">
+          <input type="text" name="name" placeholder="Nama kamu" required>
+          <input type="tel" name="phone" placeholder="No. WhatsApp" required>
+          <textarea name="note" placeholder="Catatan pesanan (opsional)"></textarea>
+          <button type="submit" class="btn primary">Kirim Pesanan via WhatsApp</button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer class="footer wrap"><span>crumb & co. © 2026</span><span>butter yellow · nebula · seashell · old copper</span><span>made softly, baked warmly.</span></footer>
+  <footer class="footer wrap">
+    <span>crumb & co. © 2026</span>
+    <span>butter yellow · nebula · seashell · old copper</span>
+    <span>made softly, baked warmly.</span>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Keranjang Cookies ♡</h3>
+      <button id="close-cart" class="close-btn">✕</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: <strong id="cart-total">Rp 0</strong></div>
+      <button id="checkout-btn" class="btn primary full">Checkout via WhatsApp</button>
+    </div>
+  </div>
+  <div id="cart-overlay" class="overlay"></div>
+
+  <!-- Product Modal -->
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <div id="modal-overlay" class="overlay"></div>
+
   <div id="toast" class="toast"></div>
+
   <script src="script.js"></script>
-<script src="https://silverhawk.web.id/lock/lock.js"></script>
-  <script src="https://silverhawk.web.id/lock/lock.js"></script>
-  </body>
+</body>
 </html>
